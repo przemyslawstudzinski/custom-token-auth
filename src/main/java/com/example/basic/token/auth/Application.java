@@ -1,12 +1,12 @@
-package com.example.springbootstartproject;
+package com.example.basic.token.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootStartProjectApplication {
+public class Application {
 
   public static void main(String[] args) {
-    SpringApplication.run(SpringBootStartProjectApplication.class, args);
+    SpringApplication.run(Application.class, args);
   }
 }

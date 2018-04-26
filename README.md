@@ -1,6 +1,6 @@
-## SPRING BOOT START PROJECT
+## BASIC TOKEN AUTH 
 
-Starting project for creating spring boot applications.
+Basic token usage.
 
 ### App startup
 The application can be started by issuing the following command in the command line:
