@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,9 +32,10 @@ public class User extends BaseEntity {
   @Column(name = "password", nullable = false)
   @Getter
   @Setter
+  @Size(min = 8, max = 100)
   private String password;
 
-  @Column(name = "email")
+  @Column(name = "email", nullable = false, unique = true)
   @Getter
   @Setter
   @Email

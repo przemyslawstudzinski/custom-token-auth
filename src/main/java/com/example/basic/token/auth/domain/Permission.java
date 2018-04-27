@@ -2,6 +2,8 @@ package com.example.basic.token.auth.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -15,7 +17,8 @@ public class Permission extends BaseEntity {
   @Getter
   @Setter
   @NotBlank
-  private String name;
+  @Enumerated(EnumType.STRING)
+  private PermissionName name;
 
   @Column(name = "decryption")
   @Getter
