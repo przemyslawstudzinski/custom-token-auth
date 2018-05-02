@@ -30,6 +30,8 @@ public class Role extends BaseEntity {
           name = "role_id", referencedColumnName = "id"),
       inverseJoinColumns = @JoinColumn(
           name = "permission_id", referencedColumnName = "id"))
+  @Getter
+  @Setter
   private Collection<Permission> permissions = new HashSet<>();
 
   @Column(name = "decryption")

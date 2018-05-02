@@ -16,12 +16,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "user")
-public class User extends BaseEntity {
+public class User extends BaseEntity implements UserDetails {
 
   @Column(name = "username", nullable = false, unique = true)
   @Getter
@@ -61,4 +64,34 @@ public class User extends BaseEntity {
   @Getter
   @Setter
   private Collection<Role> roles = new HashSet<>();
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return AuthorityUtils.createAuthorityList(
+        roles.stream()
+            .flatMap(role -> role.getPermissions().stream())
+            .map(Permission::getName)
+            .toArray(String[]::new)
+    );
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return true;
+  }
 }
