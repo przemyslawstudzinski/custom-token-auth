@@ -25,4 +25,7 @@ public class Permission extends BaseEntity {
   @Setter
   private String decryption;
 
+  public String getDisplayName() {
+    return name.name();
+  }
 }

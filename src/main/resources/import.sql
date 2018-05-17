@@ -19,3 +19,7 @@ INSERT INTO db.permission (id, decryption, name) VALUES ('9d0be514-cf75-4a5f-ad5
 INSERT INTO db.permission (id, decryption, name) VALUES ('344c3192-ea8e-453a-aedc-ac6f15fd87e0', null, 'EDIT');
 INSERT INTO db.permission (id, decryption, name) VALUES ('c6547efa-ed96-49d1-b3d8-40673bc40772', null, 'CREATE');
 INSERT INTO db.permission (id, decryption, name) VALUES ('3032afb6-218e-4bee-9766-33fad2446d80', null, 'DELETE');
+
+
+INSERT INTO db.permission_assignment (role_id, permission_id) VALUES ('14cb0f9c-b54a-41e6-84c7-7b111e61a237', 'c6547efa-ed96-49d1-b3d8-40673bc40772');
+INSERT INTO db.role_assignment (user_id, role_id) VALUES ('2239433a-de80-47bf-8172-2246c163785a', '14cb0f9c-b54a-41e6-84c7-7b111e61a237');

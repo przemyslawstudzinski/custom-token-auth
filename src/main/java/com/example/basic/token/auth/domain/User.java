@@ -65,12 +65,17 @@ public class User extends BaseEntity implements UserDetails {
   @Setter
   private Collection<Role> roles = new HashSet<>();
 
+  @Column(name = "secret")
+  @Getter
+  @Setter
+  private String secret;
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return AuthorityUtils.createAuthorityList(
         roles.stream()
             .flatMap(role -> role.getPermissions().stream())
-            .map(Permission::getName)
+            .map(Permission::getDisplayName)
             .toArray(String[]::new)
     );
   }
