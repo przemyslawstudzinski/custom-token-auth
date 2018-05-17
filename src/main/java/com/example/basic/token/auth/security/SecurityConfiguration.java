@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Autowired
   @Qualifier(value = "UserDetailsServiceImpl")
@@ -28,7 +28,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
   @Bean
   public CustomBasicAuthenticationFilter customBasicAuthenticationFilter() throws Exception {
     return new CustomBasicAuthenticationFilter(this.authenticationManager());
-  };
+  }
+
+  @Bean
+  public TokenAuthenticationFilter tokenAuthenticationFilter() throws Exception {
+    return new TokenAuthenticationFilter();
+  }
 
   @Bean
   public PasswordEncoder passwordEncoder() {
@@ -42,8 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
   }
 
   @Override
-  public void configure(final HttpSecurity http) throws Exception
-  {
+  public void configure(final HttpSecurity http) throws Exception {
     http.httpBasic()
         .and()
         .authorizeRequests()
@@ -54,12 +58,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         .disable()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-    //Implementing Token based authentication in this filter
-    final TokenAuthenticationFilter tokenFilter = new TokenAuthenticationFilter();
-    http.addFilterBefore(tokenFilter, BasicAuthenticationFilter.class);
+    // Implementing Token based authentication in this filter
+    http.addFilterBefore(tokenAuthenticationFilter(), BasicAuthenticationFilter.class);
 
-    //Creating token when basic authentication is successful and the same token can be used to authenticate for further requests
-    //final CustomBasicAuthenticationFilter customBasicAuthFilter = new CustomBasicAuthenticationFilter(this.authenticationManager());
+    // Creating token when basic authentication is successful
+    // and the same token can be used to authenticate for further requests
     http.addFilter(customBasicAuthenticationFilter());
   }
 

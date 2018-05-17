@@ -39,6 +39,8 @@ dependencies {
 	compile 'org.mapstruct:mapstruct-jdk8:1.2.0.Final'
 	compile 'org.mapstruct:mapstruct-processor:1.2.0.Final'
 
+	compile 'org.apache.commons:commons-lang3:3.7'
+
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
