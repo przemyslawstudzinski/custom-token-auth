@@ -2,19 +2,56 @@ spring:
   application:
     name: Basic Token Auth
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    password: ${database.password}
-    url: ${database.url}
-    username: ${database.user}
-
+    url: jdbc:postgresql://localhost:5432/db
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
   jpa:
+    database-platform: com.example.basic.token.auth.util.db.ImprovedPostgreSqlDialect
     show-sql: true
     hibernate:
       ddl-auto: create
-      dialect: org.hibernate.dialect.MySQL5Dialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
 
 server:
-  port: ${tomcatServerPort}
+  port: 8080
+
+logging:
+  pattern:
+    console: '%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n'
+#  level:
+#     org:
+#       springframework:
+#         security: DEBUG
+
+
+---
+
+spring:
+  profiles: docker
+  application:
+    name: Basic Token Auth
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: com.example.basic.token.auth.util.db.ImprovedPostgreSqlDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+
+server:
+  port: 8080
 
 logging:
   pattern:

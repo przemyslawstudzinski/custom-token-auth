@@ -1,6 +1,6 @@
 package com.example.basic.token.auth.security;
 
-import static com.example.basic.token.auth.utils.TokenUtils.extractCustomTokenFromHeader;
+import static com.example.basic.token.auth.util.TokenUtils.extractCustomTokenFromHeader;
 
 import com.example.basic.token.auth.domain.User;
 import com.example.basic.token.auth.repository.UserRepository;
@@ -29,7 +29,8 @@ public class TokenAuthenticationFilter extends GenericFilterBean {
     final HttpServletRequest httpRequest = (HttpServletRequest) request;
     final String token = extractCustomTokenFromHeader(httpRequest);
 
-    if (SecurityContextHolder.getContext().getAuthentication() == null) {
+    if (SecurityContextHolder.getContext().getAuthentication() == null
+        && StringUtils.hasText(token)) {
       // Get from DB and check whether token is valid
       Optional<User> user = userRepository.findBySecret(token);
 
@@ -42,7 +43,7 @@ public class TokenAuthenticationFilter extends GenericFilterBean {
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
       }
     }
-
     chain.doFilter(request, response);
   }
+
 }

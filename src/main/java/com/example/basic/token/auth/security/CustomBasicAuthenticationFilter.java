@@ -3,6 +3,8 @@ package com.example.basic.token.auth.security;
 import com.example.basic.token.auth.domain.User;
 import com.example.basic.token.auth.repository.UserRepository;
 import java.util.UUID;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
@@ -22,8 +24,8 @@ public class CustomBasicAuthenticationFilter extends BasicAuthenticationFilter {
   }
 
   @Override
-  protected void onSuccessfulAuthentication(final javax.servlet.http.HttpServletRequest request,
-      final javax.servlet.http.HttpServletResponse response, final Authentication authResult) {
+  protected void onSuccessfulAuthentication(final HttpServletRequest request,
+      final HttpServletResponse response, final Authentication authResult) {
 
     // Generate Token
     final String token = UUID.randomUUID().toString();

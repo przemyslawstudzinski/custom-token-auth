@@ -1,14 +1,18 @@
-package com.example.basic.token.auth.utils;
+package com.example.basic.token.auth.util;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 
-public class TokenUtils {
+public final class TokenUtils {
 
-  public static final String extractCustomTokenFromHeader(HttpServletRequest httpRequest) {
-    // Extract token from header
+  /**
+   * Extract token from Authorization header from request.
+   * @param httpRequest httpRequest
+   * @return token
+   */
+  public static String extractCustomTokenFromHeader(HttpServletRequest httpRequest) {
     final String tokenHeader = httpRequest.getHeader(AUTHORIZATION);
     return StringUtils.substringAfterLast(tokenHeader, ": ");
   }

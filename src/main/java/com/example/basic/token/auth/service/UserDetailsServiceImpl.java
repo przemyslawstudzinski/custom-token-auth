@@ -1,4 +1,4 @@
-package com.example.basic.token.auth.security;
+package com.example.basic.token.auth.service;
 
 import com.example.basic.token.auth.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
