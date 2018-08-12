@@ -1,5 +1,6 @@
-package com.example.basic.token.auth.domain;
+package com.example.basic.token.auth.domain.rbac;
 
+import com.example.basic.token.auth.domain.BaseEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

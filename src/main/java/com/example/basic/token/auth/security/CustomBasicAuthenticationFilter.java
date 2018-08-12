@@ -1,6 +1,6 @@
 package com.example.basic.token.auth.security;
 
-import com.example.basic.token.auth.domain.User;
+import com.example.basic.token.auth.domain.rbac.User;
 import com.example.basic.token.auth.repository.UserRepository;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;

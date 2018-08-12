@@ -1,5 +1,6 @@
-package com.example.basic.token.auth.domain;
+package com.example.basic.token.auth.domain.rbac;
 
+import com.example.basic.token.auth.domain.BaseEntity;
 import java.util.Collection;
 import java.util.HashSet;
 import javax.persistence.Column;

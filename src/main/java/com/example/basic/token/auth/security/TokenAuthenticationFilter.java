@@ -2,7 +2,7 @@ package com.example.basic.token.auth.security;
 
 import static com.example.basic.token.auth.util.TokenUtils.extractCustomTokenFromHeader;
 
-import com.example.basic.token.auth.domain.User;
+import com.example.basic.token.auth.domain.rbac.User;
 import com.example.basic.token.auth.repository.UserRepository;
 import java.io.IOException;
 import java.util.Optional;
