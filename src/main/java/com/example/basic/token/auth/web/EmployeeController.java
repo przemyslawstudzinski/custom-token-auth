@@ -5,6 +5,7 @@ import com.example.basic.token.auth.dto.EmployeeDto;
 import com.example.basic.token.auth.mapper.EmployeeMapper;
 import com.example.basic.token.auth.repository.EmployeeRepository;
 import java.util.UUID;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/employee")
+@Transactional
 public class EmployeeController {
 
   @Autowired
@@ -33,6 +35,9 @@ public class EmployeeController {
     return "Welcome in Employee Manager!";
   }
 
+  /*
+   * create.
+   */
   @RequestMapping(value = "/create", method = RequestMethod.POST)
   @ResponseStatus(HttpStatus.CREATED)
   @PreAuthorize("hasAuthority('CREATE')")
